@@ -18,8 +18,8 @@ llm_predictor = LLMPredictor(llm=llm)
 
 documents = SimpleDirectoryReader('data').load_data()
 #index = GPTSimpleVectorIndex(documents, llm_predictor=llm_predictor,)
-#index.save_to_disk('data.json')
-index = GPTSimpleVectorIndex.load_from_disk('data.json', llm_predictor=llm_predictor,)
+#index.save_to_disk('test.json')
+index = GPTSimpleVectorIndex.load_from_disk('test.json', llm_predictor=llm_predictor,)
 result = index.query("What do you think about artificial intelligence? Do not mention the fact that you are a clone.")
 
 response = str(result)

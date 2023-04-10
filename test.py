@@ -23,7 +23,7 @@ index = GPTSimpleVectorIndex(documents, llm_predictor=llm_predictor,)
 index.save_to_disk('test.json')
 
 #uncomment this line when you already have the index saved.
-index = GPTSimpleVectorIndex.load_from_disk('test.json', llm_predictor=llm_predictor,)
+#index = GPTSimpleVectorIndex.load_from_disk('test.json', llm_predictor=llm_predictor,)
 
 result = index.query("What do you think about artificial intelligence? Do not mention the fact that you are a clone.")
 

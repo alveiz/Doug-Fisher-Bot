@@ -4,7 +4,7 @@ A virtual clone of Professor Doug Fisher
 ## App Description
 This app works by using a combination of the langchain python library (https://python.langchain.com/en/latest/index.html) and the llama index python library (https://gpt-index.readthedocs.io/en/latest/index.html).
 Specificially this relies on langchain and lamma index to create an LLM and LLM Predicor with OpenAI gpt-3.5-turbo model. The app then uses the GPTSimpleVectorIndex from llama index to index all the data from the LLM.
-The index is stored n the data.json file.
+The index is stored in the data.json file. OpenAI whisper is then used to transcribe a question that the user asks and then query the index.
 
 ## setup
 clone this repo and run

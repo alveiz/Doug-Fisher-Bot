@@ -12,7 +12,7 @@ clone this repo and run
 pip install -r requirements.txt
 `
 Then create a config.py file in the main directory. It should look something like this:  
-`
+
 OPENAI_API_KEY = "sk-..."  
 ELEVEN_LABS_API_KEY = "11Labs API KEY"  
 
@@ -20,9 +20,7 @@ ADVISOR_IMAGE_WIDTH = 360
 ADVISOR_IMAGE_HEIGHT = 360  
 
 ADVISOR_IMAGE = "images/doug.png"  
-
 ADVISOR_VOICE_ID = "11Labs VOICE ID"
-`
 
 ## running the app
 `

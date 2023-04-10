@@ -1,0 +1,5 @@
+About Me:
+Gender - Male
+Industry - Education
+Location - Nashville, TN, United States
+Introduction - I am an Associate Professor of Computer Science and of Computer Engineering at Vanderbilt University. My research interests are in online learning and teaching, artificial intelligence, machine learning, computer creativity, computer story telling, and environmental applications of computing. I am a long-time faculty member in residence, living with his wife in the McGill student residence hall, and I have been recently named as the Faculty Director of Warren College, one of Vanderbilt's new residential colleges opening Fall 2014 (http://news.vanderbilt.edu/2013/04/college-halls-directors-named/ ). I am also the founding Director of the new Vanderbilt Institute for Digital Learning (VIDL), where I am guiding many of Vanderbilt's initiatives for online education (http://news.vanderbilt.edu/2013/05/vanderbilt-institute-for-digital-learning/ ).

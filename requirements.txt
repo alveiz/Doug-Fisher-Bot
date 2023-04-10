@@ -1,0 +1,5 @@
+langchain
+openai
+gradio
+llama_index
+numpy==1.21

@@ -1,0 +1,125 @@
+Computer Science Education blog
+
+Sunday, July 17, 2016
+Boy Scouts of America: Science Outreach that Lasts
+I hiked around Ithaca, NY, the day before the 4th International Conference on Computational Sustainability at Cornell University, and happened upon a knickknack shop, where I found a cache of 1963 Boy Scout merit badge pamphlets. I bought two that I didn’t already have —  Gardening and Bookbinding. The Gardening pamphlet was written by Professor Paul Work of Cornell University, probably in the 1940s when the material was copyrighted. Professor Work died in 1959, after a distinguished career that included The Tomato — if you scroll down a bit, you’ll see that Professor Work apparently liked to put faces to science.
+
+I haven’t researched the history yet, but Boy Scout merit badges are my earliest recollection, as a scout myself, of formalized mechanisms of promoting lifelong and project-based learning through badging, and communicating science and technology to the public. Professor Work’s outreach on gardening may seem closer to hobbyist than to scientific material, but there is science outreach in that badge, and among the other original 1911 merit badges were those that were clearly science outreach and learning, including Astronomy, Ornithology (later Bird Study), Chemistry, and Electricity. Still others of the originals had additional sustainability connections, to include Conservation, Agriculture, and Forestry.
+
+The Boy Scouts of America (BSA) are one of the very first environmental groups in America, and while BSA has been "dragged kicking and screaming" into inclusiveness on some social issues (see Treehugger article), though they are coming along, they have been environmentalists consistently. The current crop of sustainability-relevant merit badges are many: Animal Science; Architecture; Bird Study; Composite Materials; Energy; Environmental Science; Fish and Wildlife Management; Forestry; Geology; Insect Study; Landscape Architecture; Mammal Study; Mining in Society; Nature; Nuclear Science; Oceanography; Plant Science; Reptile and Amphibian Study; Soil and Water Conservation; and Sustainability. Moreover, among the required badges for Eagle Scout is either Environmental Science or Sustainability (choose at least one). A history of all merit badges, past and present, is an interesting read, ..., for those interested (like me!).  
+
+After CompSust-2016, I went to Nashville’s Scout shop and picked up many of the study pamphlets for sustainability-related merit badges,  and I was gratified to find attention to climate change in the most recent Sustainability merit badge (instituted 2013), and as importantly, global warming, climate change, and greenhouse effects have found their way into the study pamphlets of older merit badges like Chemistry, Weather, Environmental Science, and others. This article in Treehugger points to exactly the same satisfaction and mild surprise that I found in the BSA environmental record since I was last active.
+
+BSA has a long history of technology-relevant merit badges too (e.g Machinery, 1911 - 1995). In “my day” there were badges on Computers (1967-2014), Electronics (1963 - ), Engineering (1967 - ), which has morphed and grown to include Digital Technology; Robotics; Programming; Geocaching; Game Design; Entrepreneurship; and Graphic Arts. And this brings me to a desire and goal of infusing computational sustainability (i.e., the application of computing to solve sustainability challenges) or CompSust for short, into the BSA merit badge system. While I have focused on BSA, which is integral to my personal story, I am learning about Girl Scouts of the USA (GSUSA) and their badging system, with goals for CompSust outreach in GSUSA as well.
+
+Scouting has a long and proven history of science and engineering outreach (as well as Arts and Humanities outreach — just look at the merit badge list)! So its no surprise that as part of a network funded by the National Science Foundation, we are investigating the outreach possibilities with BSA and GSUSA -- we want science and engineering outreach mechanisms that will operate beyond the institutions of the network and that will persist beyond the period that we are funded. Web searches with keywords such as “NSF” (or “National Science Foundation”), “Boy Scouts” and “merit badge” show that NSF proposals include “outreach” activities with scouting, and merit badge workshops and study groups (e.g., “CAREER: Computational Modeling of Microstructure Evolution during Vapor Deposition”).  Additional poking around finds that museums around the country work with scouts as part of the museum’s disciplinary outreach (e.g., Nashville’s Adventure Science Museum). Museums and other institutions can have their own (digital) badging systems, and so we are designing the desiderata, requirements, and graphic designs of CompSust badges.
+
+Our network can aspire to create BSA and GSUSA merit badges on Computational Sustainability, but in the near term, our focus is on workshop materials that scouts and their mentors can use to integrate computing into satisfaction of sustainability-themed badge requirements, and to integrate sustainability into computing-themed badges.
+
+I think that the “secret formula” of BSA is that the library and internet research involved in merit badges, ecology-themed and otherwise, are side by side with merit badges (and Eagle projects, and other activities) that get adherents out into the world, with “active study” in areas such as Backpacking; Cooking; Gardening; Scuba Diving; Search and Rescue; Climbing; Shooting;  Fishing; and Citizenship in the Community, Nation, and the World. All of  these activities bonded me with nature and my fellows, and BSA helped me amalgamate an appreciation of nature, citizenship, science, and humanities. BSA did its job very well.
+
+Thanks to Professor Paul Work too, for being a pioneer in communicating science to the public. In part, it was serendipity that I discovered him, but it was serendipity that was made more probable by my curiosity about and appreciation for the place I was in.
+
+Saturday, April 16, 2016
+AI ten years later
+The 10 year anniversary of my interview on Artificial Intelligence (AI) with Adelyn Jones on Lightning 100 just passed.  I’m not really surprised that much of the interview is as relevant today as it was then, at least at the level of abstraction that we were talking. I think that some my attitudes have changed though -- I seem more open to some of the blue sky at the end of the interview today than I was then. Blue sky expectations are also what brings in so many new students to AI, who are then disappointed when AI is taught as a collection of disparate tools, rather than an integrative whole. I want to deliver integrated, blue sky AI to them -- I had the same expectation of AI as an undergraduate too! So part of my renewed openness is constrained wishful thinking. 
+
+We didn’t plan the interview ahead of time, but editing is a great thing -- I remember helping with the edits after the interview -- the whole process was a revelation, which I remembered when I was Director of Vanderbilt Institute for Digital Learning. The interview audio recording is at  https://goo.gl/98oZHE .  
+
+00:00 Cool music and Adelyn’s intro
+
+00:45 What is AI? Exploring, evaluating, and acting on alternatives was my answer then, and I still think is definitional of intelligence, at least in part
+
+01:35 What are AI applications? Medicine, surgery, military, space exploration, game playing, story telling were areas I highlighted. I would now stress environmental and energy applications.
+
+02:30 How are AIs programmed? I talked about AI developers defining analogs to grammars by generalizing experience. This was an impromptu response that I nonetheless think is essentially true, at least if “grammars” is broadly construed. AI also includes other methodologies for which the “exploring alternatives” through “grammars” are less accurate descriptors of what happens.
+
+03:30 Drawbacks of AI? The legal implications (e.g., can you hold an AI responsible for wrongful behavior?) were a concern then, in reference to medical diagnostic systems, for example. I just attended an AI and Law conference (http://watsonesq.org/) in which these same issues are discussed, albeit were not the focus of the conference.
+
+04:35 What are you (me) working on? At the time I was working on machine learning for cancer informatics with Mary Edgerton, and military personal assistants, and I mentioned some other applications at Vanderbilt, including tutoring and story (cartoon) remixing. I went to the National Science Foundation not long after this interview, and it opened me up to a whole new set of possibilities, including AI storytelling and AI and sustainability -- being opened to all new possibilities comes with some pros and cons, but no regrets.
+
+05:35 What is in its infancy? Self-driving cars as the infant that would become the adult of intelligent highways, was (and still is) a good example. Intelligent highways are still a long ways off though, in large part because of economics I think -- the technology is probably close to ready, but how long before large numbers of individuals can afford smart cars, and cities can afford to (and will) retrofit road networks and other infrastructure? A long time I think. I think thats the case with much of AI blue sky -- there are large disincentives for what doing is technically possible, or will be technically possible. That said, a lot more cars are “talking” to each other now than they were in 2006, broadcasting traffic conditions, and there are probably discernible smart herds of cars operating on dumb highways.
+
+06:30 More on strategic choice of applications: Automation through AIs are attractive for support tasks, with across-domain recommender systems and personal assistants. And “support” for humans varies from diagnosis of ailments (in support of doctors) to “support” on routine tasks like vacuuming. 
+
+08:19 How human-like can an AI become? We got into affective computing, particularly the mimicking, perceiving, and feeling of emotion. This was also a topic at the Law and AI conference, and affective computing is an area that I think has taken off in the last 10 years generally, though its introduction to AI certainly predates 2006 (e.g., http://affect.media.mit.edu/).
+
+09:25 Are Phony emotions good? No way -- we have enough phoniness, and we don’t need machines to practice it -- it would have negative consequences for our perceptions of personhood, including disillusionment (http://www.vuse.vanderbilt.edu/~dfisher/ai.theology.html), but I think there are important caveats here.
+
+10:18 Why is affective computing a goal? Among the caveats are that sensing emotion can be useful, when humans are in the loop. But here too, I am conflicted and there is otherwise plenty of nuance. For example, I saw PARO, the robotic seal (e.g., https://www.youtube.com/watch?v=2ZUn9qtG8ow) for hospice patients. The seal is phony, but it is still a positive presence for some -- and remember FERBY (http://www.radiolab.org/story/137469-furbidden-knowledge/)!
+
+10:52 How is emotion perception programmed into a machine? We talked about machine learning of associations between emotions and facial expressions and physiological readings -- machine learning of this type (supervised, as clarified below) is still all the rage. I’m not as interested as I once was in the science of machine learning as it is currently practiced, but the applications of it are ubiquitous and often very interesting.
+
+11:55 Clarification on Supervised learning of emotion recognition through sight and sound. We talked about the help window of a department of motor vehicles as example -- this was a fun exchange, with some of it undoubtedly edited out -- I was truly relaxed by this point in the interview.
+
+13:25 How does the machine learn to respond in emotion charged interactions? A machine is good at “sitting there and taking it” :-)
+
+14:50 What happens when we create a self-aware AI? What are its rights? This was right out of an earlier write up on the theological implications of artificial intelligence (http://www.vuse.vanderbilt.edu/~dfisher/ai.theology.html), something I may get more into one day.
+
+16:00 Economic disincentives for creating genuinely feeling robots -- see 05:35.
+
+16:19 Feeling robots as surrogates for humans in science fiction -- again, the AI and theology commentary at 14:50 is relevant here.
+
+16:35 What are differences between AI hardware platforms and the human brain? (I was winging it, but I think I got the big picture right)
+
+17:45 Many in AI are not interested in human intelligence, so much as they are interested in “alien intelligence” -- anything that gets job done (for the pragmatists) and/or a genuine curiosity with all the possible kinds of intelligences that can exist. Who is to say that a whale’s intelligence resembles ours in all or even most aspects?
+
+18:28 Is downloading the mind a possibility? I think I would be more accepting of this possibility, which is blue sky for sure, but after 10 years, I am much more appreciative that the future is a big place. I don’t know what’s possible. And I want to build a planetary AI environmental consciousness -- almost as crazy.
+
+Thanks for the memories, AJ!
+
+
+Thursday, July 25, 2013
+Idea for a Class Exercise: Reverse Engineering Annoying and Embedded AI Software
+I initially blamed age for a sudden increase in the number of "typos" that were actually correctly spelled words, but out of context. Then I started suspecting that stupid (or rather annoying!) word completion algorithms was responsible, and recently I've started catching it. My favorite artificial intelligence (AI) gaffs are
+
+"wild west" ended up as "mild west" (the 'w' in "wild" changed to 'm' mid-way through the phrase though I didn't correct it until I was done ripping off text)
+
+"dinner party" ==> "sinner party"
+
+"cutting and pasting" ==> "cussing and pasting"
+
+These mistakes lead to funny results -- in most cases the auto-correction on various platforms is just plain screwy, and in other cases of course it works well, but these are generally cases when I've completed the word, its flagged as an incorrect spelling with red underline and there is a change. It seems like some software is just trying to be TOO proactive and TOO helpful, perhaps like some people are some of the time.
+
+I would prefer slightly more patient AI ... AI without the emotional needs.
+
+Having my AI students do a thought experiment, reverse engineering such software, will be a neat exercise in my AI class, I think, because while this software is really, really annoying, and just plain messed up, it (or its developers) is a lot more interesting and instructive in its neediness than I first appreciated!
+
+
+Sunday, July 21, 2013
+Playing with Pictures
+I originally posted the following on my now extinguished Woodpress blog in
+August 2011, and used the story in my Fall 2011 AI class as an example of problem solving that we'd eventually like computers to do.
+
+---
+
+During a driving tour of the Midwest in July that Pat and I made in our new Honda Fit, I was continually posting pictures on Facebook in a vacation album. Less than midway through I exhausted the 200 picture limit per album and was tempted to start new albums, one for each day or two, but a 200 picture limit is plenty I thought, and I liked the idea of using the constraint to prune out all but my favorites and pictures that were not thematically redundant; I also constrained myself to keep those already receiving a thumbs up or comment, etc.  After the trip I was invited onto Google+ by Russ and Mary Lou, and Google (Picasa) has no album limit that I can tell, so there are 750+ pictures there!  (https://picasaweb.google.com/106374191437655932029/SummerVacation2011 ) Talk about a lack of discipline.
+
+A very cool functionality is that I can locate these pictures on Google maps, using any of the modalities – maps, satellite view, street view, or Earth.  In locations with sufficient resolution I could place the photo right on the spot I was standing when I took the picture, though in some cases there appears to be some drift from the location I placed it when I look back. There didn’t appear to be a way to specify orientation of the photo – what direction I was facing when I took it, but I am guessing someone will do that in the near future. In any case, it’s very cool.
+
+Since I was placing the pictures a couple of weeks after the trip, there were different heuristics I used to place them – sometimes it was straightforward – a particular highway junction, or something otherwise named like a school or a cemetery or a mountain peak on Google maps. The order in which pictures were taken offered some constraints, since having located one picture narrowed the possible locations for the next, but frankly, I have a good memory for such things as events and sequences. In one case though, even with some known restricted area stemming from sequencing information, I was trying to locate a picture in the tiny town of Scribner, Nebraska, but I saw no way to identify the precise location of a picture I had taken of an old church or the like, with a steeple (attached below). I was in the satellite view, maximum resolution, struggling to see some identifying visual cues, but the steeple itself was impossible to make out from a direct overhead view, …, and then I saw the SHADOW of the steeple in the satellite image !!! Amazing!! I’m attaching that image to this note. That was just neat.
+
+I had so much fun that I created a couple of other albums on Picasa. One of these was from my trip to Copenhagen in 2009, while at NSF (https://picasaweb.google.com/106374191437655932029/Copenhagen2009 ; http://doughfisher.blogspot.com/2013/07/copenhagen-2009.html). I had taken a redeye from Dulles in DC to Copenhagen, arriving about 7 or 8 AM the day BEFORE the conference would start in a port city some ways away. I never sleep on planes, not even redeye flights, so I was pretty trashed when I arrived, but how often do you I go to Copenhagen! (OK, I’d been there is 2008 as well). So before taking the train to the Helsingor, I walked around Copenhagen. Even though it had been more than two years previously, I remembered the sequence well and was able to place the pictures in the same way I had for our recent vacation, including confirming the exact location of a picture of a statue from its shadow! Statue and shadow attached.
+
+What was even more striking in this case than our recent vacation was the affect of reliving that walk as I placed the pictures – I saw the images; remembered roughly the walking sequence, using cues from Google views to fill in a few gaps and otherwise reduce uncertainties. A good friend had died not long before that trip, and that had been on my mind during the stroll of Copenhagen, and a hint of that emotion in the form of reflection came back.
+
+I had so much fun doing the picture placement that I’m trying to think about how to formalize the activity as a project for my artificial intelligence class this coming semester. There is also a good human-computer interface problem here – in many cases I could only approximately place the pictures (e.g., highway shots on our driving vacation) and representing the variable uncertainty associated with physical location would be desirable.
+
+I am writing this note on a whim – I watched the last installment of Ken Burns’ National Parks, and was remembering my Boy Scout days of backpacking through places like Tuolumne Meadows in Yosemite and Mt Whitney in Sequoia National Park. I’ve got some great stories of the Colorado river trip and bears raiding our campground in Yosemite, but I think my favorite trip was Kings Canyon, which probably started outside Mammoth, but in any case, we hiked among some incredible lakes, most above timberline: Thousand islands, Emerald, Ruby, Garnet and Shadow lakes. There is nothing like hiking above timberline along a ridge when a wind hits your back -- really an amazing feeling.
+
+My crispest memories are probably of Garnet Lake – it was amazing when I was a boy scout, and I returned in graduate school with friends Rogers and Pete. In any case, I looked for some pictures on the Web and found these: http://www-personal.umich.edu/~jensenl/visuals/album/2006/thousand/ . And many others of course. Scroll down – there are some very nice pictures here and I remember more than a few scenes – I could point out the little island in Garnet Lake I swam too and almost died (joking, sort of) – it was freezing! The places we cooked and washed. And I can probably place some of the pictures on the trail map.
+
+This recent play with pictures suggests some possibilities with immersion into virtual worlds – the technology is pretty primitive now, but because its piggy backing on memory of real experience, the affect is quite powerful.
+
+
+Monday, July 15, 2013
+Reusing other Instructor's Assignments ... not! (or ?)
+I am in the Educational Advances in Artificial Intelligence (EAAI-13), and we just concluded a session on educational repositories, particularly online repositories of homework assignments. Repositories of educational resources is a topic near and dear to my heart, but at least in the case of repositories of homework assignments, there appears to be no, little, or at best weak anecdotal evidence that assignments are being reused. At a minimum, don't we want repositories to be "instrumented,", like my (and everyone's) YouTube channel(s), so I can see downloads, likes, dislikes, and more sophisticated measures of usage that are specific to homework assignments?
+
+Its hard to know if a homework assignment that has been posted in a educational repository is actually used by another instructor, unless an instructor who has used it, gets back to me and tells me so. There is some work in thinking about how to do this. But there is also low hanging fruit. First, we can measure downloads, but beyond this, as an educational community can take a small step towards a scholarly culture surrounding education materials by designing licenses specific to this kind of content.
+
+For example, a license for usage of educational content could require that the material can be used by others (e.g., following any of the principles of creative commons licenses: http://creativecommons.org/), but additionally require that the user report back on the usage to the author (typically, the copyright holder), whether the use is as is, or derivative.
+
+I think that this would be an incredible help to evaluating the extent and manner of use of educational material, going well beyond measuring downloads, and ultimately of evaluating the utility of educational materials to the educational community.
+
+Let's ask people about their use, through a license that requires report back (and nothing else), rather than simply depending of the ability of inference by machine methods.

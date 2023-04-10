@@ -11,8 +11,6 @@ from langchain.llms import OpenAIChat
 import openai
 openai.api_key = config.OPENAI_API_KEY
 
-messages = [{"role": "system", "content": 'You are a financial advisor. Respond to all input in 50 words or less. Answer in the first person. Do not use the $ sign, write out dollar amounts with the full word dollars. Do not use quotation marks. Do not say you are an AI language model.'}]
-
 # prepare Q&A embeddings dataframe
 
 llm=OpenAIChat(temperature=0.5, model_name="gpt-3.5-turbo", 
@@ -54,6 +52,7 @@ def transcribe(audio):
     if len(split_list) > 1:
         response = split_list[1]
 
+    # create a transcript for the app
     chat_transcript = ""
     chat_transcript += f"Student: {transcript}\n"
     chat_transcript += f"Professor Fisher: {response}\n"
@@ -68,13 +67,13 @@ def transcribe(audio):
         }
     }
 
+    #make a post request to 11Labs to produce audio
     r = requests.post(url, headers={'xi-api-key': config.ELEVEN_LABS_API_KEY}, json=data)
 
     output_filename = "reply.mp3"
     with open(output_filename, "wb") as output:
         output.write(r.content)
 
-    
 
     # return chat_transcript
     return chat_transcript, output_filename

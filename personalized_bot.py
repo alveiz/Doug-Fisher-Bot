@@ -16,7 +16,8 @@ from models import DavinciModel, BaseGPT3Model
 openai.api_key = config.OPENAI_API_KEY
 elevenLabsAPI = config.ELEVEN_LABS_API_KEY
 
-os.environ['PATH'] += ";C:\\ffmpeg\\bin"
+# If on windows, download and add ffmpeg to path variable
+# os.environ['PATH'] += ";C:\\ffmpeg\\bin"
 
 def ask_persona():
     print("Welcome to the face-to-face chat bot with audio and persona management.")
@@ -129,8 +130,6 @@ model = choose_model(persona_input)
 
 def transcribe(audio):
     global index, llm_predictor
-
-    print("Here")
 
     # API now requires an extension so we will rename the file
     audio_filename_with_extension = audio + '.wav'

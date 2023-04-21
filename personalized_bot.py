@@ -16,6 +16,8 @@ from models import DavinciModel, BaseGPT3Model
 openai.api_key = config.OPENAI_API_KEY
 elevenLabsAPI = config.ELEVEN_LABS_API_KEY
 
+os.environ['PATH'] += ";C:\\ffmpeg\\bin"
+
 def ask_persona():
     print("Welcome to the face-to-face chat bot with audio and persona management.")
     print("As a first step, please input the persona that you want to manage.")
@@ -103,13 +105,13 @@ def choose_model(persona):
         model = None
 
         if model_num == 1:
-            print("Using GPT3 Turbo")
+            print("Using Davinci")
             if persona == "2":
                 model = DavinciModel("Kevin Hart")
             else:
                 model = DavinciModel(persona)
         else:
-            print("Using Davinci")
+            print("Using GPT3-Turbo")
             if persona == "2":
                 model = BaseGPT3Model("Kevin Hart")
             else:
@@ -128,6 +130,8 @@ model = choose_model(persona_input)
 def transcribe(audio):
     global index, llm_predictor
 
+    print("Here")
+
     # API now requires an extension so we will rename the file
     audio_filename_with_extension = audio + '.wav'
     os.rename(audio, audio_filename_with_extension)
@@ -136,6 +140,7 @@ def transcribe(audio):
     raw_transcript = openai.Audio.transcribe("whisper-1", audio_file)
     transcript = raw_transcript["text"]
     print("TRANSCRIPT: ", transcript)
+
 
     response = None
     if persona_input == "1":
@@ -154,16 +159,17 @@ def transcribe(audio):
         if len(split_list) > 1:
             response = split_list[1]
     else:
-        response = model.generate_response(f"Do not mention the fact that you are a clone, and answer this question: {transcript}?")
+        print(transcript)
+        response = model.generate_response(transcript)
 
     print(f"Bot response: {response}")
     # create a transcript for the app
     chat_transcript = ""
-    chat_transcript += f"Student: {transcript}\n"
+    chat_transcript += f"You: {transcript}\n"
     chat_transcript += f"{persona_input}: {response}\n"
 
     # text to speech request with eleven labs
-    url = f"https://api.elevenlabs.io/v1/text-to-speech/{config.ADVISOR_VOICE_ID}/stream"
+    url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}/stream"
     data = {
         "text": response.replace('"', ''),
         "voice_settings": {

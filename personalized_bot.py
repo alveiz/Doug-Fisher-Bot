@@ -16,6 +16,9 @@ from models import DavinciModel, BaseGPT3Model
 openai.api_key = config.OPENAI_API_KEY
 elevenLabsAPI = config.ELEVEN_LABS_API_KEY
 
+# If on windows, download and add ffmpeg to path variable
+# os.environ['PATH'] += ";C:\\ffmpeg\\bin"
+
 def ask_persona():
     print("Welcome to the face-to-face chat bot with audio and persona management.")
     print("As a first step, please input the persona that you want to manage.")
@@ -55,9 +58,9 @@ def generate_ids(persona_input):
     elif persona_input == '2':
         voice_id = config.KEVIN_HART_VOICE_ID
         pic_path = config.KEVIN_HART_IMAGE
-        print("You chose kevin hart!")
-        print("pic path: ", pic_path)
-        print("voice id: ", voice_id)
+        #print("You chose kevin hart!")
+        #print("pic path: ", pic_path)
+        #print("voice id: ", voice_id)
     else:
         print("\nIt appears you inputted your own persona.\n")
         print(
@@ -73,30 +76,28 @@ def generate_ids(persona_input):
 
         voice_id = ids[voice_input - 1]
         pic_path = config.DEFAULT_IMAGE
-
+        try:
+            dalle_image = openai.Image.create(
+            prompt=f"Create a photorealistic image of {persona_input}",
+            n=1,
+            size="1024x1024")
+            pic_path = dalle_image["data"][0]["url"]
+        except openai.error.InvalidRequestError:
+            print("Using default image")
+        
     return voice_id, pic_path
 
-def generate_doug():
-    llm = OpenAIChat(temperature=0.5, model_name="gpt-3.5-turbo",
-                     prefix_messages=[
-                         {"role": "system",
-                          "content": f"You are a clone of Vanderbilt University Computer Science Professor Douglas H. Fisher. Answer all questions in the first person, and do mention the fact that you are a clone. There is no need to mention that the provided context is not useful in answering the question, just answer the question. If you do not know the answer to a question based on the context provided, make something up that sounds similar to the data you are trained on. Make sure to match your tone and style of writing to the data you are trained on. Keep your response under 80 words."}
-                     ]
-                     )
-    base_embeddings = OpenAIEmbeddings()
-    llm_predictor = LLMPredictor(llm=llm)
+llm = OpenAIChat(temperature=0.5, model_name="gpt-3.5-turbo",
+                    prefix_messages=[
+                        {"role": "system",
+                        "content": f"You are a clone of Vanderbilt University Computer Science Professor Douglas H. Fisher. Answer all questions in the first person, and do mention the fact that you are a clone. There is no need to mention that the provided context is not useful in answering the question, just answer the question. If you do not know the answer to a question based on the context provided, make something up that sounds similar to the data you are trained on. Make sure to match your tone and style of writing to the data you are trained on. Keep your response under 80 words."}])
+llm_predictor = LLMPredictor(llm=llm)
 
-    documents = SimpleDirectoryReader('data').load_data()
-
-    index = GPTSimpleVectorIndex.load_from_disk('data.json', llm_predictor=llm_predictor, )
-
-    return index, llm_predictor
 
 def choose_model(persona):
 
     if persona == "1":
         print("Douglas Fisher has a prebuilt model so we will be using that.")
-        return generate_doug()
     else:
         print("Choose to use either GPT3 (1) or the text-davinci-003 model (2).")
         model_num = int(input("Choose model by number from above: "))
@@ -110,7 +111,7 @@ def choose_model(persona):
             if persona == "2":
                 model = BaseGPT3Model("Kevin Hart")
             else:
-                model = DavinciModel(persona)
+                model = BaseGPT3Model(persona)
         else:
             print("Using Davinci")
             if persona == "2":
@@ -129,7 +130,7 @@ model = choose_model(persona_input)
 
 
 def transcribe(audio):
-    global index, llm_predictor
+    global llm_predictor
 
     # API now requires an extension so we will rename the file
     audio_filename_with_extension = audio + '.wav'
@@ -142,6 +143,7 @@ def transcribe(audio):
 
     response = None
     if persona_input == "1":
+        index = GPTSimpleVectorIndex.load_from_disk('data.json', llm_predictor=llm_predictor, )
         result = index.query(f"Do not mention the fact that you are a clone, and answer this question: {transcript}")
         response = str(result)
 
@@ -162,12 +164,12 @@ def transcribe(audio):
     print(f"Bot response: {response}")
     # create a transcript for the app
     chat_transcript = ""
-    chat_transcript += f"Student: {transcript}\n"
+    chat_transcript += f"You: {transcript}\n"
     chat_transcript += f"{persona_input}: {response}\n"
 
     # text to speech request with eleven labs
     print("out", voice_id)
-    '''url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}/stream"
+    url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}/stream"
     data = {
         "text": response.replace('"', ''),
         "voice_settings": {
@@ -181,7 +183,7 @@ def transcribe(audio):
 
     output_filename = "reply.mp3"
     with open(output_filename, "wb") as output:
-        output.write(r.content)'''
+        output.write(r.content)
 
     # return chat_transcript
     return chat_transcript, output_filename

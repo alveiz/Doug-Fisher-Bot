@@ -1,11 +1,5 @@
 import os, config
 os.environ["OPENAI_API_KEY"] = config.OPENAI_API_KEY
-from langchain.embeddings import OpenAIEmbeddings
-from llama_index import (
-    GPTSimpleVectorIndex,
-    SimpleDirectoryReader,
-    LLMPredictor,)
-from langchain.llms import OpenAIChat
 import openai
 
 # prepare Q&A embeddings dataframe
@@ -44,7 +38,7 @@ class DavinciModel():
         model = openai.Completion.create(
             model="text-davinci-003",
             prompt=full_prompt,
-            max_tokens=1024,
+            max_tokens=100,
             temperature=0.7,
             n=1,
             stop=None
@@ -62,13 +56,12 @@ class BaseGPT3Model():
         self.persona = persona
 
     def generate_response(self, input):
-
         model = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
-            max_tokens=1024,
+            max_tokens=100,
             temperature=0.7,
             messages=[{
-                "role": "system", "content": f"You are a clone of {self.persona}. You will be asked questions and must respond in the manner that the persona provided would. Do not mention that you are a clone."
+                "role": "system", "content": f"Take on the personality of {self.persona}. Respond to questions exactly how {self.persona} would respond."
             }, {
                 "role": "user", "content": input
             }]

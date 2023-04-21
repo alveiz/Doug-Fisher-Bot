@@ -55,6 +55,9 @@ def generate_ids(persona_input):
     elif persona_input == '2':
         voice_id = config.KEVIN_HART_VOICE_ID
         pic_path = config.KEVIN_HART_IMAGE
+        print("You chose kevin hart!")
+        print("pic path: ", pic_path)
+        print("voice id: ", voice_id)
     else:
         print("\nIt appears you inputted your own persona.\n")
         print(
@@ -105,15 +108,15 @@ def choose_model(persona):
         if model_num == 1:
             print("Using GPT3 Turbo")
             if persona == "2":
-                model = DavinciModel("Kevin Hart")
+                model = BaseGPT3Model("Kevin Hart")
             else:
                 model = DavinciModel(persona)
         else:
             print("Using Davinci")
             if persona == "2":
-                model = BaseGPT3Model("Kevin Hart")
+                model = DavinciModel("Kevin Hart")
             else:
-                model = BaseGPT3Model(persona)
+                model = DavinciModel(persona)
 
         return model
 
@@ -139,7 +142,7 @@ def transcribe(audio):
 
     response = None
     if persona_input == "1":
-        result = index.query(f"Do not mention the fact that you are a clone, and answer this question: {transcript}?")
+        result = index.query(f"Do not mention the fact that you are a clone, and answer this question: {transcript}")
         response = str(result)
 
         phrase = "provided context"
@@ -154,7 +157,7 @@ def transcribe(audio):
         if len(split_list) > 1:
             response = split_list[1]
     else:
-        response = model.generate_response(f"Do not mention the fact that you are a clone, and answer this question: {transcript}?")
+        response = model.generate_response(f"Do not mention the fact that you are a clone, and answer this question: {transcript}")
 
     print(f"Bot response: {response}")
     # create a transcript for the app
@@ -163,7 +166,8 @@ def transcribe(audio):
     chat_transcript += f"{persona_input}: {response}\n"
 
     # text to speech request with eleven labs
-    url = f"https://api.elevenlabs.io/v1/text-to-speech/{config.ADVISOR_VOICE_ID}/stream"
+    print("out", voice_id)
+    '''url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}/stream"
     data = {
         "text": response.replace('"', ''),
         "voice_settings": {
@@ -177,7 +181,7 @@ def transcribe(audio):
 
     output_filename = "reply.mp3"
     with open(output_filename, "wb") as output:
-        output.write(r.content)
+        output.write(r.content)'''
 
     # return chat_transcript
     return chat_transcript, output_filename
@@ -190,7 +194,8 @@ theme = gr.themes.Default().set(
 
 with gr.Blocks(theme=theme) as ui:
     # advisor image input and microphone input
-    advisor = gr.Image(value=config.ADVISOR_IMAGE).style(width=config.ADVISOR_IMAGE_WIDTH,
+    
+    advisor = gr.Image(value=pic_path).style(width=config.ADVISOR_IMAGE_WIDTH,
                                                          height=config.ADVISOR_IMAGE_HEIGHT)
     audio_input = gr.Audio(source="microphone", type="filepath")
 

@@ -1,6 +1,7 @@
 import os, config
 import gradio as gr
 import requests
+
 os.environ["OPENAI_API_KEY"] = config.OPENAI_API_KEY
 from langchain.llms import OpenAI
 from langchain.embeddings import OpenAIEmbeddings
@@ -12,9 +13,9 @@ from langchain.llms import OpenAIChat
 import openai
 from models import DavinciModel, BaseGPT3Model
 
-
 openai.api_key = config.OPENAI_API_KEY
 elevenLabsAPI = config.ELEVEN_LABS_API_KEY
+
 
 # If on windows, download and add ffmpeg to path variable
 # os.environ['PATH'] += ";C:\\ffmpeg\\bin"
@@ -22,12 +23,12 @@ elevenLabsAPI = config.ELEVEN_LABS_API_KEY
 """
 ask_persona
 
-This function is the initial prompting to the user. The user is prompted
-with entering one of the preset personas or choosing a custom persona.
+This function asks the user to input a persona. This can be a custom
+persona or it can be the preset personas of Kevin Hart and Professor Douglas Fisher
 
-Contributors: Shivam Vohra, Jasiu Latocha, Alvin Eizner
+@:return Persona that the user inputted
 
-@:return persona inputted by user
+Contributors: Shivam Vohra/Jasiu Latocha, Alvin Eizner
 """
 def ask_persona():
     print("Welcome to the face-to-face chat bot with audio and persona management.")
@@ -41,16 +42,17 @@ def ask_persona():
 
     return persona_input
 
+
 """
 initialize
 
-This function initializes the eleven labs voices in order to have a way to map eventual
-user input into the requested voice ids.
+This function initializes the mappings of the names and ids from the
+eleven labs API.
 
-Contributors: Shivam Vohra, Jasiu Latocha, Alvin Eizner
+@:return Mapping of the index to ids
+@:return Mapping of the index to voice names
 
-@:return ids of the voice_id in the index provided
-@:return mapping of the voice_id to the name to display
+Contributors: Shivam Vohra, Alvin Eizner, Jasiu Latocha
 """
 def initialize():
     voices = requests.get("https://api.elevenlabs.io/v1/voices", headers={"xi-api-key": elevenLabsAPI})
@@ -68,15 +70,14 @@ def initialize():
 """
 generate_ids
 
-This function generates the return voice id and the picture path 
-to eventually disply in the gradio UI.
+This function picks the voice id to use from the user's input as well as
+the picture path to display
 
-@:param The persona that the user provided to check if it is preset or not
+@:param Persona that the user inputted
+@:return ElevenLabs voice id
+@:return Picture path to display in the UI
 
-@:return The voice_id to use from eleven labs
-@:return The picture path to display in the UI
-
-Contributors: Shivam Vohra, Alvin Eizner, Jasiu Latocha
+Contributors: Alvin Eizner/Shivam Vohra, Jasiu Latocha
 """
 def generate_ids(persona_input):
     ids, mappings = initialize()
@@ -90,6 +91,9 @@ def generate_ids(persona_input):
     elif persona_input == '2':
         voice_id = config.KEVIN_HART_VOICE_ID
         pic_path = config.KEVIN_HART_IMAGE
+        # print("You chose kevin hart!")
+        # print("pic path: ", pic_path)
+        # print("voice id: ", voice_id)
     else:
         print("\nIt appears you inputted your own persona.\n")
         print(
@@ -105,52 +109,39 @@ def generate_ids(persona_input):
 
         voice_id = ids[voice_input - 1]
         pic_path = config.DEFAULT_IMAGE
+        try:
+            dalle_image = openai.Image.create(
+                prompt=f"Create a photorealistic image of {persona_input}",
+                n=1,
+                size="1024x1024")
+            pic_path = dalle_image["data"][0]["url"]
+        except openai.error.InvalidRequestError:
+            print("Using default image")
 
     return voice_id, pic_path
 
-"""
-generate_doug
+# This snippet of code generates the Douglas Fisher model to use - Alvin Eizner
+llm = OpenAIChat(temperature=0.5, model_name="gpt-3.5-turbo",
+                 prefix_messages=[
+                     {"role": "system",
+                      "content": f"You are a clone of Vanderbilt University Computer Science Professor Douglas H. Fisher. Answer all questions in the first person, and do mention the fact that you are a clone. There is no need to mention that the provided context is not useful in answering the question, just answer the question. If you do not know the answer to a question based on the context provided, make something up that sounds similar to the data you are trained on. Make sure to match your tone and style of writing to the data you are trained on. Keep your response under 80 words."}])
+llm_predictor = LLMPredictor(llm=llm)
 
-Uses the provided documents about Professor Douglas Fisher to gpt-3.5-turbo for fine-tuning
-allowing for the chat bot to act exactly as Douglas Fisher.
-
-@:return The index to query for responses
-@:return The LLM predictor
-
-Contributors: Alvin Eizner, Shivam Vohra, Jasiu Latocha
-"""
-def generate_doug():
-    llm = OpenAIChat(temperature=0.5, model_name="gpt-3.5-turbo",
-                     prefix_messages=[
-                         {"role": "system",
-                          "content": f"You are a clone of Vanderbilt University Computer Science Professor Douglas H. Fisher. Answer all questions in the first person, and do mention the fact that you are a clone. There is no need to mention that the provided context is not useful in answering the question, just answer the question. If you do not know the answer to a question based on the context provided, make something up that sounds similar to the data you are trained on. Make sure to match your tone and style of writing to the data you are trained on. Keep your response under 80 words."}
-                     ]
-                     )
-    base_embeddings = OpenAIEmbeddings()
-    llm_predictor = LLMPredictor(llm=llm)
-
-    documents = SimpleDirectoryReader('data').load_data()
-
-    index = GPTSimpleVectorIndex.load_from_disk('data.json', llm_predictor=llm_predictor, )
-
-    return index, llm_predictor
 
 """
 choose_model
 
-This function allows the user to choose the model to use whether it be the
-Davinci model or the GPT model.
+This function chooses the model from the persona input provided, selecting either
+the pretrained Douglas Fisher model or a Davinci or GPT based model.
 
-@:param Persona input the user provided
-@:return The model to use
+@:param Persona provided by user
+@:return Model selected
 
 Contributors: Shivam Vohra/Alvin Eizner, Jasiu Latocha
 """
 def choose_model(persona):
-
     if persona == "1":
         print("Douglas Fisher has a prebuilt model so we will be using that.")
-        return generate_doug()
     else:
         print("Choose to use either GPT3 (1) or the text-davinci-003 model (2).")
         model_num = int(input("Choose model by number from above: "))
@@ -160,19 +151,20 @@ def choose_model(persona):
         model = None
 
         if model_num == 1:
+            print("Using GPT3 Turbo")
+            if persona == "2":
+                model = BaseGPT3Model("Kevin Hart")
+            else:
+                model = BaseGPT3Model(persona)
+        else:
             print("Using Davinci")
             if persona == "2":
                 model = DavinciModel("Kevin Hart")
             else:
                 model = DavinciModel(persona)
-        else:
-            print("Using GPT3-Turbo")
-            if persona == "2":
-                model = BaseGPT3Model("Kevin Hart")
-            else:
-                model = BaseGPT3Model(persona)
 
         return model
+
 
 persona_input = ask_persona()
 voice_id, pic_path = generate_ids(persona_input)
@@ -181,18 +173,17 @@ model = choose_model(persona_input)
 """
 transcribe
 
-This function takes in the audio from gradio and creates the transcript including the input
-transcript and the eventual response transcript. The model is queried and then the output
-is the audio provided back.
+Converts the audio to transcripts that are also provided to gradio
+for eventual output audio
 
-@:param audio that is to be transcribed
-@:return Output transcript
-@:return File with the output
+@:param The audio from gradio
+@:return The output transcript
+@:return Output file of reply
 
 Contributors: Alvin Eizner, Shivam Vohra, Jasiu Latocha
 """
 def transcribe(audio):
-    global index, llm_predictor
+    global llm_predictor
 
     # API now requires an extension so we will rename the file
     audio_filename_with_extension = audio + '.wav'
@@ -203,10 +194,10 @@ def transcribe(audio):
     transcript = raw_transcript["text"]
     print("TRANSCRIPT: ", transcript)
 
-
     response = None
     if persona_input == "1":
-        result = index.query(f"Do not mention the fact that you are a clone, and answer this question: {transcript}?")
+        index = GPTSimpleVectorIndex.load_from_disk('data.json', llm_predictor=llm_predictor, )
+        result = index.query(f"Do not mention the fact that you are a clone, and answer this question: {transcript}")
         response = str(result)
 
         phrase = "provided context"
@@ -221,8 +212,8 @@ def transcribe(audio):
         if len(split_list) > 1:
             response = split_list[1]
     else:
-        print(transcript)
-        response = model.generate_response(transcript)
+        response = model.generate_response(
+            f"Do not mention the fact that you are a clone, and answer this question: {transcript}")
 
     print(f"Bot response: {response}")
     # create a transcript for the app
@@ -231,6 +222,7 @@ def transcribe(audio):
     chat_transcript += f"{persona_input}: {response}\n"
 
     # text to speech request with eleven labs
+    print("out", voice_id)
     url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}/stream"
     data = {
         "text": response.replace('"', ''),
@@ -251,18 +243,18 @@ def transcribe(audio):
     return chat_transcript, output_filename
 
 
-# set a custom theme - Set by Alvin Eizner
+# set a custom theme
 theme = gr.themes.Default().set(
     body_background_fill="#000000",
 )
 
 
-# This code launches the gradio UI
-# Created by Alvin Eizner
+# This launches the gradio UI - Alvin Eizner, Shivam Vohra
 with gr.Blocks(theme=theme) as ui:
     # advisor image input and microphone input
-    advisor = gr.Image(value=config.ADVISOR_IMAGE).style(width=config.ADVISOR_IMAGE_WIDTH,
-                                                         height=config.ADVISOR_IMAGE_HEIGHT)
+
+    advisor = gr.Image(value=pic_path).style(width=config.ADVISOR_IMAGE_WIDTH,
+                                             height=config.ADVISOR_IMAGE_HEIGHT)
     audio_input = gr.Audio(source="microphone", type="filepath")
 
     # text transcript output and audio
